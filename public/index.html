@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript" src="dpd.js"></script>
+  <script>
+  	function connect() {
+  		username = document.getElementById('username').value ;
+  		dpd.users.login({username:username,password:"password"}) ;
+  	}
+
+  	function sendMessage() {
+  		content = document.getElementById('message').value ;
+  		dpd.messages.post({content:content}) ;
+  	}
+
+  	dpd.on('newMessage', function(data) {
+  		document.getElementById('messagefield').innerHTML += data.content ;
+  	})
+  </script>
+</head>
+<body>
+	<input type="text" id="username"><input type="button" value="login" onClick="connect()">
+	<input type="text" id="message"><input type="button" value="send message" onClick="sendMessage()">
+	<div id="messagefield"></div>
+</body>
+</html>
